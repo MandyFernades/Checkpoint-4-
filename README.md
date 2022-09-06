@@ -11,6 +11,7 @@ Checkpoint realizado em dupla.
 Nomes dos integrantes:
 
 Amanda da Silva Fernandes - RM86688
+
 Nicolas Tigle Lins Silva - RM88468
 
 
