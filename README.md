@@ -5,6 +5,7 @@ Protótipo de um sistema de identificação IoT.
 
 Integração do Node-red.
 
+https://www.youtube.com/watch?v=CC5aHomOVXo&ab_channel=NicolasTigle
 
 Checkpoint realizado em dupla.
 
