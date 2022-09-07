@@ -1,0 +1,375 @@
+[
+    {
+        "id": "67abef2ec6e683bd",
+        "type": "tab",
+        "label": "Checkpoint4",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "3022711f631d9412",
+        "type": "mqtt in",
+        "z": "67abef2ec6e683bd",
+        "name": "",
+        "topic": "RFID/1",
+        "qos": "2",
+        "datatype": "auto",
+        "broker": "8fd56d0e541701b3",
+        "inputs": 0,
+        "x": 150,
+        "y": 180,
+        "wires": [
+            [
+                "bb6845e2a693ebd2",
+                "557791eaebb4da1c"
+            ]
+        ]
+    },
+    {
+        "id": "6887cae4b91afd87",
+        "type": "mqtt out",
+        "z": "67abef2ec6e683bd",
+        "name": "",
+        "topic": "RFID/1",
+        "qos": "0",
+        "retain": "",
+        "broker": "8fd56d0e541701b3",
+        "x": 320,
+        "y": 400,
+        "wires": []
+    },
+    {
+        "id": "bb6845e2a693ebd2",
+        "type": "json",
+        "z": "67abef2ec6e683bd",
+        "name": "",
+        "property": "payload",
+        "action": "",
+        "pretty": false,
+        "x": 310,
+        "y": 180,
+        "wires": [
+            [
+                "64761198ffeb84d1"
+            ]
+        ]
+    },
+    {
+        "id": "5931941e2f64c1ff",
+        "type": "serial in",
+        "z": "67abef2ec6e683bd",
+        "name": "",
+        "serial": "6dc50b87f715eb54",
+        "x": 150,
+        "y": 440,
+        "wires": [
+            [
+                "6887cae4b91afd87",
+                "a12ff876af9e771b"
+            ]
+        ]
+    },
+    {
+        "id": "557791eaebb4da1c",
+        "type": "serial out",
+        "z": "67abef2ec6e683bd",
+        "name": "",
+        "serial": "6dc50b87f715eb54",
+        "x": 310,
+        "y": 240,
+        "wires": []
+    },
+    {
+        "id": "64761198ffeb84d1",
+        "type": "change",
+        "z": "67abef2ec6e683bd",
+        "name": "Tag",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "payload.tag",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 450,
+        "y": 180,
+        "wires": [
+            [
+                "ea39e9f6a44a4576"
+            ]
+        ]
+    },
+    {
+        "id": "b82e5e8329624dc8",
+        "type": "telegram sender",
+        "z": "67abef2ec6e683bd",
+        "name": "Telegram Sender",
+        "bot": "daad10419f9152f4",
+        "haserroroutput": false,
+        "outputs": 1,
+        "x": 790,
+        "y": 460,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "84424fbad1088824",
+        "type": "function",
+        "z": "67abef2ec6e683bd",
+        "name": "Envia Mensagen",
+        "func": "msg.payload = {\n    content : msg.payload.tag,\n    type : 'message',\n    chatId: 1792245997\n};\n\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 530,
+        "y": 460,
+        "wires": [
+            [
+                "b82e5e8329624dc8"
+            ]
+        ]
+    },
+    {
+        "id": "a12ff876af9e771b",
+        "type": "json",
+        "z": "67abef2ec6e683bd",
+        "name": "",
+        "property": "payload",
+        "action": "",
+        "pretty": false,
+        "x": 310,
+        "y": 480,
+        "wires": [
+            [
+                "84424fbad1088824",
+                "be2d57e1fe897468"
+            ]
+        ]
+    },
+    {
+        "id": "ea39e9f6a44a4576",
+        "type": "ui_text",
+        "z": "67abef2ec6e683bd",
+        "group": "469519207d22cd20",
+        "order": 3,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "label": "Tag",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "className": "",
+        "x": 450,
+        "y": 220,
+        "wires": []
+    },
+    {
+        "id": "71494fae55db20f1",
+        "type": "ui_button",
+        "z": "67abef2ec6e683bd",
+        "name": "",
+        "group": "2272b116c11da489",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "Motor 180º",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "{\"grau\":180}",
+        "payloadType": "json",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 650,
+        "y": 360,
+        "wires": [
+            [
+                "e6a2617251f7ab78"
+            ]
+        ]
+    },
+    {
+        "id": "e6a2617251f7ab78",
+        "type": "serial out",
+        "z": "67abef2ec6e683bd",
+        "name": "",
+        "serial": "6dc50b87f715eb54",
+        "x": 730,
+        "y": 320,
+        "wires": []
+    },
+    {
+        "id": "8ec1ed94bb820346",
+        "type": "ui_button",
+        "z": "67abef2ec6e683bd",
+        "name": "",
+        "group": "2272b116c11da489",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "Motor 0º",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "{\"grau\":0}",
+        "payloadType": "json",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 640,
+        "y": 280,
+        "wires": [
+            [
+                "e6a2617251f7ab78"
+            ]
+        ]
+    },
+    {
+        "id": "71d048b362753b0b",
+        "type": "e-mail",
+        "z": "67abef2ec6e683bd",
+        "server": "smtp.gmail.com",
+        "port": "465",
+        "secure": true,
+        "tls": true,
+        "name": "",
+        "dname": "Email",
+        "x": 750,
+        "y": 520,
+        "wires": []
+    },
+    {
+        "id": "be2d57e1fe897468",
+        "type": "function",
+        "z": "67abef2ec6e683bd",
+        "name": "Envia Mensagem",
+        "func": "msg.payload = msg.payload.tag;\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 530,
+        "y": 520,
+        "wires": [
+            [
+                "71d048b362753b0b"
+            ]
+        ]
+    },
+    {
+        "id": "8fd56d0e541701b3",
+        "type": "mqtt-broker",
+        "name": "",
+        "broker": "broker.mqttdashboard.com",
+        "port": "1883",
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": "4",
+        "keepalive": "60",
+        "cleansession": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willPayload": "",
+        "willMsg": {},
+        "userProps": "",
+        "sessionExpiry": ""
+    },
+    {
+        "id": "6dc50b87f715eb54",
+        "type": "serial-port",
+        "serialport": "COM5",
+        "serialbaud": "9600",
+        "databits": "8",
+        "parity": "none",
+        "stopbits": "1",
+        "waitfor": "",
+        "dtr": "none",
+        "rts": "none",
+        "cts": "none",
+        "dsr": "none",
+        "newline": "\\n",
+        "bin": "false",
+        "out": "char",
+        "addchar": "",
+        "responsetimeout": "10000"
+    },
+    {
+        "id": "daad10419f9152f4",
+        "type": "telegram bot",
+        "botname": "@amandacp_bot",
+        "usernames": "",
+        "chatids": "",
+        "baseapiurl": "",
+        "updatemode": "polling",
+        "pollinterval": "300",
+        "usesocks": false,
+        "sockshost": "",
+        "socksport": "6667",
+        "socksusername": "anonymous",
+        "sockspassword": "",
+        "bothost": "",
+        "botpath": "",
+        "localbotport": "8443",
+        "publicbotport": "8443",
+        "privatekey": "",
+        "certificate": "",
+        "useselfsignedcertificate": false,
+        "sslterminated": false,
+        "verboselogging": false
+    },
+    {
+        "id": "469519207d22cd20",
+        "type": "ui_group",
+        "name": "Tag RFID",
+        "tab": "1128d52a74959146",
+        "order": 2,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "2272b116c11da489",
+        "type": "ui_group",
+        "name": "Servo Motor",
+        "tab": "1128d52a74959146",
+        "order": 2,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "1128d52a74959146",
+        "type": "ui_tab",
+        "name": "Home",
+        "icon": "dashboard",
+        "disabled": false,
+        "hidden": false
+    }
+]
